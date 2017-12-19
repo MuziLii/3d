@@ -45,11 +45,7 @@
             }
 
             var light;
-            function initLight() {
-                light = new THREE.DirectionalLight(0xFF0000, 1.0, 0);
-                light.position.set(100, 100, 200);
-                scene.add(light);
-            }
+            
 
             var cube;
             function initObject() {
@@ -78,7 +74,6 @@
                 initThree();
                 initCamera();
                 initScene();
-                initLight();
                 initObject();
                 render();
             }
