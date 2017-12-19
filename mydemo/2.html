@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../js/three.min.js"></script>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			width: 100%;
+			height: 750px;
+			overflow:hidden;
+		
+		}
+	</style>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	var scene = new THREE.Scene();
+
+	var camera = new THREE.PerspectiveCamera(45,document.body.clientWidth/document.body.clientHeight,1,1000);
+
+	var renderer = new THREE.WebGLRenderer({
+        antialias : true
+    });
+	renderer.setClearColor('#000000');
+	renderer.setSize(document.body.clientWidth,document.body.clientHeight);
+	document.body.appendChild(renderer.domElement);
+
+	var geometry = new THREE.Geometry();
+    var material = new THREE.LineBasicMaterial( { vertexColors: THREE.VertexColors} );
+    var color1 = new THREE.Color( 0x444444 ), color2 = new THREE.Color( 0xFF0000 );
+    // 线的材质可以由2点的颜色决定
+    var p1 = new THREE.Vector3( -100, 0, 100 );
+    var p2 = new THREE.Vector3(  100, 0, -100 );
+    geometry.vertices.push(p1);
+    geometry.vertices.push(p2);
+    geometry.colors.push( color1, color2 );
+
+    var line = new THREE.Line( geometry, material, THREE.linesegments );
+    scene.add(line);
+    camera.position.y=1000;
+    camera.up.z = 1;
+    camera.lookAt(0,0,0);
+    function render(){
+		requestAnimationFrame(render);
+	    renderer.clear();
+	    renderer.render(scene, camera);
+    
+	}
+	render();
+</script>
+</html>
